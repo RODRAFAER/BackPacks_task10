@@ -44,11 +44,6 @@ int main() {
 	sort(weightThingsGram.begin(), weightThingsGram.end());
 	reverse(weightThingsGram.begin(), weightThingsGram.end());
 
-
-	//for (int i = 0; i < numThings; i++) {
-	//	cout << weightThingsGram[i] << endl;
-	//}
-
 	int backpack1 = 0;
 	int backpack2 = 0;
 
