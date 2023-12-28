@@ -3,6 +3,8 @@
 #include <Windows.h>
 #include <vector>
 #include <algorithm>
+#include <cmath>
+#include <string>
 
 using std::cout;
 using std::cin;
@@ -10,6 +12,9 @@ using std::endl;
 using std::vector;
 using std::sort;
 using std::reverse;
+using std::min_element;
+using std::min;
+
 
 int proverka(int a) {
 	while (cin.fail() || a < 0) {
@@ -26,7 +31,11 @@ int main() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	int numThings, weightGram;
+	int numThings, weightGram, numPerson;
+
+	cout << "Сколько человек идут в поход?\n";
+	cin >> numPerson;
+	numPerson = proverka(numPerson);
 
 	cout << "Укажите, сколько вещей вы хотите с собой взять: ";
 	cin >> numThings;
@@ -44,19 +53,34 @@ int main() {
 	sort(weightThingsGram.begin(), weightThingsGram.end());
 	reverse(weightThingsGram.begin(), weightThingsGram.end());
 
-	int backpack1 = 0;
-	int backpack2 = 0;
+	vector <int> backpacks;
+	for (int i = 0; i < numPerson; i++) {
+		backpacks.push_back(0);
+	}
 
-	for (int i = 0; i < numThings; i++) {
-		if ((backpack1-backpack2) >= weightThingsGram[numThings-1]) {
-			backpack2 += weightThingsGram[i];
+	if (numThings >= numPerson) {
+		for (int i = 0; i < numPerson; i++) {
+			backpacks[i] = weightThingsGram[i];
 		}
-		else {
-			backpack1 += weightThingsGram[i];
+
+
+		for (int i = numPerson; i < numThings; i++) {
+			sort(backpacks.begin(), backpacks.end());
+			backpacks[0] += weightThingsGram[i];
 		}
 	}
-	cout << "Вес первого рюкзака: " << backpack1 << " грамм" << endl;
-	cout << "Вес второго рюкзака: " << backpack2 << " грамм" << endl;
+	else {
+		for (int i = 0; i < numThings; i++) {
+			backpacks[i] = weightThingsGram[i];
+		}
+	}
+
+
+
+	for (int i = 0; i < numPerson; i++) {
+		cout << "Вес " << i+1 << " рюкзака: " << backpacks[i] << " грамм\n";
+	}
+
 
 	
 
