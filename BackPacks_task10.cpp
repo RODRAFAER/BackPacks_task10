@@ -65,8 +65,15 @@ int main() {
 
 
 		for (int i = numPerson; i < numThings; i++) {
-			sort(backpacks.begin(), backpacks.end());
-			backpacks[0] += weightThingsGram[i];
+			//sort(backpacks.begin(), backpacks.end());
+			//reverse(backpacks.begin(), backpacks.end());
+			//sort(weightThingsGram.begin(), weightThingsGram.end());
+			if ((backpacks[0] - backpacks[1]) > weightThingsGram[numThings-1]) {
+				backpacks[1] += weightThingsGram[i];
+			}
+			else {
+				backpacks[0] += weightThingsGram[i];
+			}
 		}
 	}
 	else {
@@ -74,7 +81,8 @@ int main() {
 			backpacks[i] = weightThingsGram[i];
 		}
 	}
-
+	//12 3 3 1 4 11
+	//12 11 4 3 3 1
 
 
 	for (int i = 0; i < numPerson; i++) {
