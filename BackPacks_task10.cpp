@@ -48,7 +48,7 @@ int main() {
 	int backpack2 = 0;
 
 	for (int i = 0; i < numThings; i++) {
-		if ((backpack1-backpack2) >= weightThingsGram[numThings-1]) {
+		if ((backpack1-backpack2) > weightThingsGram[numThings-1]) {
 			backpack2 += weightThingsGram[i];
 		}
 		else {
